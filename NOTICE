@@ -21,4 +21,4 @@ remain unmodified. Serial tests use independent Linux PTY peers and expected byt
 SDK verification, AArch64 build-only checks, local/hosted CI gates, delivery tools,
 and contribution drafts are community additions. The SDK itself is not bundled.
 The five application patches and PR drafts have not been submitted upstream.
-Local acceptance is separate from pending hosted CI and physical board execution.
+Local and hosted CI acceptance are separate from physical board execution.

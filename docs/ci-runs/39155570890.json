@@ -1,0 +1,151 @@
+{
+  "schema_version": 1,
+  "record_type": "verified_github_actions_run",
+  "repository": "SerhatAnkt/gemstone-testlab",
+  "run_id": 39155570890,
+  "run_url": "https://github.com/SerhatAnkt/gemstone-testlab/actions/runs/39155570890",
+  "commit": "b26d6eddb6da44d16dc0ab2dfe5af85c98166042",
+  "conclusion": "success",
+  "jobs": [
+    {
+      "name": "aarch64-cross-build",
+      "job_id": 117757984563,
+      "conclusion": "success"
+    },
+    {
+      "name": "linux-integration",
+      "job_id": 117757984777,
+      "conclusion": "success"
+    },
+    {
+      "name": "host-checks",
+      "job_id": 117757984797,
+      "conclusion": "success"
+    },
+    {
+      "name": "serial-integration",
+      "job_id": 117757984822,
+      "conclusion": "success"
+    },
+    {
+      "name": "acceptance",
+      "job_id": 117758200261,
+      "conclusion": "success"
+    }
+  ],
+  "acceptance": {
+    "schema_version": 1,
+    "type": "testlab.ci_acceptance",
+    "started_at": "2026-10-18T18:45:53.234902+00:00",
+    "status": "passed",
+    "github_hosted_runner": "passed",
+    "profiles": [
+      "host",
+      "serial",
+      "can",
+      "aarch64"
+    ],
+    "errors": [],
+    "run_url": "https://github.com/SerhatAnkt/gemstone-testlab/actions/runs/39155570890",
+    "tested_commit": "b26d6eddb6da44d16dc0ab2dfe5af85c98166042",
+    "source_digest": "1cfcc2e4d340cfe9f1beb808d038418d9c1f0cd03a0dea8e906ccaa078cd1123",
+    "harness_digest": "3ca45b724eb436eb06b41e953eac30348a5000df5d5e4ff3fbf4c86356d5bb32",
+    "finished_at": "2026-10-18T18:45:53.804433+00:00",
+    "exitcode": 0
+  },
+  "evidence_downloads_sha256_verified": true,
+  "downloaded_evidence_reverified": {
+    "schema_version": 1,
+    "type": "testlab.ci_acceptance",
+    "started_at": "2026-10-18T18:47:38.818519+00:00",
+    "status": "passed",
+    "github_hosted_runner": "passed",
+    "profiles": [
+      "host",
+      "serial",
+      "can",
+      "aarch64"
+    ],
+    "errors": [],
+    "run_url": "https://github.com/SerhatAnkt/gemstone-testlab/actions/runs/39155570890",
+    "tested_commit": "b26d6eddb6da44d16dc0ab2dfe5af85c98166042",
+    "source_digest": "1cfcc2e4d340cfe9f1beb808d038418d9c1f0cd03a0dea8e906ccaa078cd1123",
+    "harness_digest": "3ca45b724eb436eb06b41e953eac30348a5000df5d5e4ff3fbf4c86356d5bb32",
+    "finished_at": "2026-10-18T18:47:39.401369+00:00",
+    "exitcode": 0
+  },
+  "test_counts": {
+    "host": {
+      "passed": 66,
+      "failed": 0,
+      "error": 0,
+      "skipped": 0,
+      "not_run": 0
+    },
+    "serial": {
+      "passed": 45,
+      "failed": 0,
+      "error": 0,
+      "skipped": 0,
+      "not_run": 0
+    },
+    "can": {
+      "passed": 36,
+      "failed": 0,
+      "error": 0,
+      "skipped": 0,
+      "not_run": 0
+    }
+  },
+  "ci_process_records": {
+    "host": 99,
+    "serial": 65,
+    "can": 274,
+    "aarch64": 23
+  },
+  "owned_vcan_interfaces_removed": 24,
+  "native_targets": 6,
+  "aarch64_targets": 6,
+  "artifacts": [
+    {
+      "name": "testlab-serial-controlled-failure",
+      "id": 12147037081,
+      "size_bytes": 97923,
+      "digest": "sha256:d4470b3c796afb72c26fe6ae14fdd78e23e6e5cab116ae524774daec96e6f915"
+    },
+    {
+      "name": "testlab-aarch64-evidence",
+      "id": 12146907566,
+      "size_bytes": 98070,
+      "digest": "sha256:c1a1627f58d7ec9a0a0fabed7add630d55a46dc831818839669a795f4d525653"
+    },
+    {
+      "name": "testlab-serial-evidence",
+      "id": 12146693174,
+      "size_bytes": 320617,
+      "digest": "sha256:40034d6d25164014bb9e2122e3be77ae35caf79d11057e0bd655d2acb930aa6e"
+    },
+    {
+      "name": "testlab-host-evidence",
+      "id": 12146658409,
+      "size_bytes": 1206954,
+      "digest": "sha256:bfce86354f01caeada367d22077be1836a551e3ee1667da776330447df794015"
+    },
+    {
+      "name": "testlab-ci-acceptance",
+      "id": 12146643371,
+      "size_bytes": 540,
+      "digest": "sha256:6f070ccd61c1a48541c3d3cb42dc1da4d5d9e7ad85fef386aa3d6d9e66198fbb"
+    },
+    {
+      "name": "testlab-can-evidence",
+      "id": 12146319620,
+      "size_bytes": 807260,
+      "digest": "sha256:8fd8f93d81b0bb0a370d9b6e615bf55d817dcd05e698d1aa0b280776c5c27f0b"
+    }
+  ],
+  "board_runtime": "not_run",
+  "arm64_execution_mode": "cross_build_only",
+  "ten_consecutive_complete_runs": "not_completed",
+  "upstream_prs": "draft_not_submitted"
+}

@@ -2,8 +2,8 @@
 
 CI altyapısı uygulandı. **Yerel kabul ile gerçek GitHub runner kabulü ayrıdır.**
 Proje deposu artık [SerhatAnkt/gemstone-testlab](https://github.com/SerhatAnkt/gemstone-testlab) olarak oluşturuldu.
-Uzak kabul, bu depodaki gerçek workflow run URL'si ve aynı koşunun dört profil
-kanıtı incelendikten sonra kapatılabilir. Aşağıdaki WP-09 yerel deneyleri
+**Uzak kabul geçti:** [koşu #2](https://github.com/SerhatAnkt/gemstone-testlab/actions/runs/39155570890) içinde
+beş iş başarılı oldu. Aynı koşunun dört profil kanıtı indirilip yeniden doğrulandı. Aşağıdaki WP-09 yerel deneyleri
 tarihsel kanıttır; yeni bir hosted koşu olarak yeniden etiketlenmez.
 
 ## Bir komutla bir profil
@@ -181,9 +181,9 @@ CAN/seri dizinlerine paket işaretçileri eklenerek 147 vaka birlikte toplanabil
 `wp09-clean-room/` temiz paketten tekrarları içerir. Önceki iş paketlerinin
 raporları tarihsel olarak korunur, güncel koşu gibi yeniden etiketlenmez.
 
-**Uzak kabul açık:** önceki tam teslimdeki `artifacts/wp09-remote-status.json`
-depo oluşturulmadan önceki tarihsel engeli kaydeder. Yeni proje deposunda
-gerçek run bağlantısı ve indirilen artifact'ler doğrulanınca bu madde kapatılabilir. O1 donanımı,
+**Uzak kabul geçti:** `docs/ci-runs/39155570890.json` gerçek hosted kabulü
+kaydeder. Önceki tam teslimdeki `artifacts/wp09-remote-status.json`, depo
+oluşturulmadan önceki tarihsel engeldir. O1 donanımı,
 fiziksel UART/CAN ve gerçek zamanlı davranış bu CI kabulünün dışında kalır.
 
 
@@ -202,3 +202,17 @@ kanıt dizinlerinde `include-hidden-files: true` kullanır. Böylece inventory'y
 kaydedilen gizli dosyalar da taşınır; eksik dosya kontrolü gevşetilmez.
 
 İlk başarısız koşu ve düzeltme sonraki başarılı koşudan ayrı kaydedilir.
+
+
+## Doğrulanmış hosted kabul
+
+[Koşu #2](https://github.com/SerhatAnkt/gemstone-testlab/actions/runs/39155570890) beş işi başarıyla tamamladı.
+66 host, 45 seri ve 36 gerçek vcan vakası geçti; altı AArch64 ELF derlendi.
+24 sahipli vcan arayüzü kaldırıldı. Altı artifact'in ZIP SHA-256 değerleri
+GitHub metadata'sıyla karşılaştırıldı; dört profil `ci-verify` kurallarıyla
+yerelde yeniden incelendi. Özgün hosted `acceptance.json`, aynı commit,
+kaynak/harness özetleri ve `github_hosted_runner: passed` sonucunu taşır.
+
+Kalıcı küçük özet: `docs/ci-runs/39155570890.json`. İlk başarısız koşu
+`docs/ci-runs/39155256787.json` içinde ayrı korunur. Artifact'ler workflow'da
+14 gün tutulur; bu süre geçince ham indirmeler erişilemeyebilir.

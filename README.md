@@ -1,5 +1,11 @@
 # Gemstone TestLab
 
+[![Gemstone TestLab](https://github.com/SerhatAnkt/gemstone-testlab/actions/workflows/testlab.yml/badge.svg)](https://github.com/SerhatAnkt/gemstone-testlab/actions/workflows/testlab.yml)
+
+**Gerçek GitHub Actions kabulü geçti:** [doğrulanmış koşu](https://github.com/SerhatAnkt/gemstone-testlab/actions/runs/39155570890).
+Beş iş başarılı; 66 host, 45 seri ve 36 gerçek vcan testi ile altı AArch64
+çapraz derleme doğrulandı. İndirilen kanıtlar ayrıca yerelde denetlendi.
+
 **Yeni geliştirici için başlangıç:** [QUICKSTART.md](QUICKSTART.md).
 **WP-10 yerel teslimi geçti:** temiz kaynak ZIP'i, yeni venv ve doğrulanmış SDK
 üzerinden tek komutla **66 host, 45 seri, 36 gerçek vcan ve altı AArch64 hedef**
@@ -18,12 +24,13 @@ pytest/vcan fixture'larıyla CAN sözleşmesini içerir. WP-05, üç dilde CAN a
 ve altı giriş noktası için hata senaryolarını; WP-06, C/C++/Python seri terminal
 uygulamalarını gerçek Linux PTY'leriyle sınayan 45 vakayı ekler.
 
-**WP-09 CI altyapısı hazır; yerel kabul geçti:** ortak `ci` komutu, dört
+**WP-09 yerel ve hosted CI kabulü geçti:** ortak `ci` komutu, dört
 profilin kanıtlarını denetleyen `ci-verify` ve beş Actions işi eklendi.
 **66 host, 45 seri, 36 gerçek vcan testi ve altı ARM64 hedef** geçti.
 Seri/CAN sonuçları açıkça seçilen yama kopyalarına aittir. Gerçek commit
-değişimi ve yanlış checkout denemeleri de doğrulandı. **Uzak GitHub kabulü
-açık:** proje deposu [SerhatAnkt/gemstone-testlab](https://github.com/SerhatAnkt/gemstone-testlab) olarak oluşturuldu; ilk hosted kabul henüz doğrulanmadı.
+değişimi ve yanlış checkout denemeleri de doğrulandı. Gerçek hosted koşunun
+beş işi ve dört profil kanıtı doğrulandı; kayıt
+[docs/ci-runs/39155570890.json](docs/ci-runs/39155570890.json) içindedir.
 
 **WP-08 tamamlandı:** resmî Gemstone SDK v1.0.6 arşivinin boyut/SHA-256 kilidi,
 doğrulanan sysroot ve ayrı `aarch64` derleme profili eklendi. Altı özgün C/C++
@@ -42,9 +49,8 @@ kaynaklardan yeniden üretildi. Her tekrar aynı vaka/sonucu ve gerçek pytest
 başarısızlık kodunu korudu. Özgün upstream dosyaları değiştirilmedi.
 
 WP-01'de iki yönlü PTY ve ayrı Linux konuğunda gerçek `vcan` deneyleri
-geçmişti. **Uzak CI kabulü açık:** GitHub Actions iş akışı proje deposuna
-aktarılıyor; gerçek hosted koşunun dört profil ve toplam kabul sonucu
-doğrulanana kadar bu madde açık kalır.
+geçmişti. GitHub runner üzerinde de gerçek vcan/PTY ve kaynak temizliği
+doğrulandı; uzak CI önkoşulu ve WP-09 toplam kabulü kapatıldı.
 
 ## Önce derleme yöneticisini çalıştır
 
@@ -395,15 +401,16 @@ kaynak ve test kodunun sınandığını; tüm işlerin ve kanıt denetimlerinin
 geçtiğini doğrular. PR'ın head SHA'sı checkout edilir; uyuşmayan veya kirli
 checkout, araçlar başlamadan reddedilir.
 
-**Bu iş akışı henüz GitHub üzerinde çalıştırılmadı.** Kabulün kapanması için
-başarılı bir run URL'si, JUnit dosyaları ve temizliği gösteren `lease.json` kayıtları gerekir.
-Gereken gerçek sonuçlar [RESULTS.md](RESULTS.md) içinde listelenmiştir.
+**Bu iş akışı GitHub üzerinde başarıyla çalıştı.** [Koşu #2](https://github.com/SerhatAnkt/gemstone-testlab/actions/runs/39155570890)
+içindeki beş iş geçti. İndirilen JSON/JUnit ve `lease.json` kanıtları
+yerelde tekrar doğrulandı; 24 sahipli vcan arayüzü kaldırıldı. Sonuçlar
+[RESULTS.md](RESULTS.md) ve [CI kayıtları](docs/ci-runs/README.md) içindedir.
 
-## Sonraki iş paketi
+## Kalan işler
 
-WP-09'un uzak kabulü için hedef TestLab depo adresi, başarılı run URL'si ve
-saklanan kanıtlar gerekir. Ardından WP-10'da katkı paketleri ve ikinci
-geliştiriciye yönelik son teslim hazırlanır. O1 donanımı, fiziksel UART/CAN
+WP-09 hosted kabulü ve WP-10 yerel teslimi tamamlandı. İlk mimari plandaki
+on ardışık tam koşu hedefi ve beş yamanın güncel upstream dalında yeniden
+doğrulanıp ayrı PR'larla sunulması açık kalır. O1 donanımı, fiziksel UART/CAN
 ve gerçek zamanlı davranış henüz sınanmadı.
 
 Lisans: Apache-2.0. Kaynak atıfları için `NOTICE` ve `source.lock.json` dosyalarına bakın.

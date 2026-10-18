@@ -1,9 +1,9 @@
 # WP-10 — temiz kurulum ve katkı teslimi
 
-WP-10, WP-09'un **yerelde doğrulanmış** altyapısı üzerinden hazırlandı.
-WP-09'un uzak runner kabulü henüz kapanmadığı için bu aşama ilk sürümün
-yayımlandığı anlamına gelmez. Hazır dosyaların uzak depoya aktarılması ve
-gerçek Actions kanıtı ayrı açık maddelerdir.
+WP-10'un ilk ZIP teslimi WP-09'un **yerelde doğrulanmış** altyapısı üzerinden
+hazırlandı. Sonraki GitHub aktarımında [gerçek hosted kabul](https://github.com/SerhatAnkt/gemstone-testlab/actions/runs/39155570890)
+da geçti. On ardışık tam koşu hedefi ve upstream gönderimleri açık olduğundan
+bu durum ilk sürümün etiketlenip yayımlandığı anlamına gelmez.
 
 ## Teslim bileşenleri
 
@@ -93,7 +93,6 @@ gerçek kabul matrisinin sahibi `ci-verify` ve ilgili kontrol aracıdır.
 ## Açık yayın maddeleri
 
 [RELEASE_READINESS.md](RELEASE_READINESS.md) uzaktaki koşu, hedef depo ve fiziksel
-kart kapsamını ayrı gösterir. WP-10 yerel tesliminin geçmesi, WP-09'un eksik
-hosted kabulünü veya ilk mimari plandaki on tekrar hedefini kendiliğinden
-tamamlamaz. Yeni AHRS kapsamına geçmeden önce ilk sürümün bu maddeleri gözden
+kart kapsamını ayrı gösterir. WP-09 hosted kabulü sonradan gerçek GitHub
+koşusuyla kapatıldı. İlk mimari plandaki on tekrar hedefi açık kalır. Yeni AHRS kapsamına geçmeden önce ilk sürümün bu maddeleri gözden
 geçirilmelidir.

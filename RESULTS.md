@@ -11,7 +11,7 @@ gecesi doğrulandı. WP-06 aynı gece native PTY testleriyle doğrulandı.
 | İş paketi | Durum | Kanıt |
 | --- | --- | --- |
 | WP-01: CAN ve PTY yerel teknik deneyi | Geçti | `artifacts/native-final/`, `artifacts/can-linux-guest/` |
-| WP-01: gerçek GitHub runner önkoşulları | Açık; uzak runner çalıştırılmadı | Yerel engel raporu ve hazırlanmış CI dosyası |
+| WP-01: gerçek GitHub runner önkoşulları | **Geçti**; hosted vcan/PTY ve temizlik doğrulandı | [Koşu #2](https://github.com/SerhatAnkt/gemstone-testlab/actions/runs/39155570890) |
 | WP-02: altı C/C++ hedef, ayrı dizinler, komut ve çıktı kaydı | **Geçti** | `artifacts/wp02-acceptance/` |
 | WP-02: değişiklik ve hata regresyonları | **5/5 geçti** | `artifacts/wp02-regression/`, `tests/host/test_build_manager.py` |
 | WP-03: süreç yönetimi ve temizlik | **17/17 süreç kontrolü geçti** | `artifacts/wp03-validation/` |
@@ -36,7 +36,7 @@ gecesi doğrulandı. WP-06 aynı gece native PTY testleriyle doğrulandı.
 | WP-08: güncel host/seri kabulü | **54/54 host, 45/45 seri geçti** | `artifacts/wp08-host-final/`, `artifacts/wp08-serial-final/` |
 | WP-09: ortak CI yürütme ve toplam yerel kabul | **66 host, 45 seri, 36 vcan ve 6 ARM64 hedef geçti** | `artifacts/wp09-acceptance/local.json` |
 | WP-09: gerçek commit ve kabul hataları | **Doğrulandı; hatalar sıfırdan farklı kodla reddedildi** | `artifacts/wp09-current-pr/`, `artifacts/wp09-acceptance/` |
-| WP-09: gerçek uzak CI kabulü | Açık; hedef depo eksik | Beş iş hazır; run URL'si yok |
+| WP-09: gerçek uzak CI kabulü | **Beş iş geçti**; indirilen kanıtlar yeniden doğrulandı | [Koşu #2](https://github.com/SerhatAnkt/gemstone-testlab/actions/runs/39155570890); `docs/ci-runs/39155570890.json` |
 | WP-10: temiz kurulum ve tek komutla tam yerel kabul | **66 host, 45 seri, 36 gerçek vcan, 6 AArch64 hedef geçti** | `artifacts/wp10-clean-release/` |
 | WP-10: beş bağımsız katkı yaması | **12 baseline call hatası → yalnız ilgili yamayla 12 başarı** | `artifacts/wp10-contributions/contributions.json` |
 | WP-10: sade kaynak dağıtımı ve hata kontrolleri | **13 exporter kontrolü ve 7 olumsuz teslim/kurulum kontrolü geçti** | `artifacts/wp10-delivery-final/`, `artifacts/wp10-controls/` |
@@ -441,10 +441,23 @@ Tam kanıt: `artifacts/wp10-verification.json`. Yeni rapor türleri
 `docs/delivery.schema.json` ile tanımlanır. Kaynak paketi ile tam kanıt arşivinin
 kapsamı ve tekrar komutları: [WP10_DELIVERY.md](docs/WP10_DELIVERY.md).
 
+## Gerçek GitHub Actions kabulü
+
+Proje `SerhatAnkt/gemstone-testlab` deposuna aktarıldı. İlk koşuda CAN modülü
+eksikliği ve artifact yüklemesinin gizli doğrulama dosyasını atlaması bulundu.
+Çalışan çekirdeğe uygun modül kurulumu ve altı kanıt yüklemesinde gizli
+dosyaların korunması eklenince [koşu #2](https://github.com/SerhatAnkt/gemstone-testlab/actions/runs/39155570890)
+beş işi başarıyla tamamladı. **66 host, 45 seri, 36 gerçek vcan testi ve
+altı AArch64 çapraz derleme geçti; 24 sahipli arayüz kaldırıldı.**
+
+Altı artifact'in ZIP SHA-256 değeri doğrulandı. Dört profilin dosya özetleri,
+matrisleri, JSON/JUnit sonuçları ve temizlik kayıtları yerelde yeniden
+denetlendi; hosted kabul tekrar geçti. Gerçek commit, job kimlikleri ve
+artifact özetleri `docs/ci-runs/39155570890.json` içindedir. İlk başarısız
+koşu da ayrı kaydedildi. Fiziksel kart ve ARM64 hedefte çalışma yapılmadı.
+
 ## Açık işler
 
-- Gerçek GitHub Actions run URL'si ve yüklenmiş kanıtlar henüz yok.
-- WP-09: hedef GitHub deposu belirlendikten sonra beş işin gerçek uzak kabulü ve run URL'si.
 - İlk mimari plandaki on ardışık tam koşu hedefi bu teslimde tamamlanmadı.
 - CAN çapraz dil eşleşmeleri ve daha geniş dayanıklılık senaryoları sonraki kapsamda.
 - O1 kartında çalışma yapılmadı.
@@ -455,6 +468,6 @@ Güncel CI iş akışında `host-checks` altı derleme ve 66 host kontrolünü;
 senaryosu ve kontrollü bayt bozulmasını çalıştırır. Yama hazırlığı ve kaynak
 özetleri de saklanır. `aarch64-cross-build` işi doğrulanan SDK ile altı hedefi
 derler ve ELF/readelf kanıtlarını saklar. Beşinci `acceptance` işi hepsinin
-kanıtlarını karşılaştırır. Başarılı bir uzak run URL'si, JUnit sonuçları ve sahipli kaynakların silindiğini gösteren
-`lease.json` kayıtları gereklidir. Hazır bir YAML dosyası, bu uzak çalıştırmanın
-kanıtı değildir. Önceki WP-01 PTY kanıtları yerel kayıtlarda korunur.
+kanıtlarını karşılaştırır. Bu gereksinimler yukarıdaki gerçek hosted koşuda
+JUnit ve `lease.json` kayıtlarıyla karşılandı. Hazır YAML dosyasından ayrı
+olarak gerçek koşu ve indirilen kanıtlar incelendi. Önceki WP-01 PTY kanıtları yerel kayıtlarda korunur.

@@ -55,8 +55,9 @@ kanıttır. Çalışma kopyası başarılı girişte silinir; kanıt ve kaynak s
    ekler veya gerçek workflow artifact bağlantıları kullanın. Henüz koşulmamış
    bir workflow URL'si veya fiziksel kart sonucu yazmayın.
 
-Bu teslim hiçbir issue/PR göndermedi ve uzak depoyu değiştirmedi. PR taslakları
-incelenebilir hazır metindir; yayın kararı ve hedef dal seçimi ayrı adımdır.
+TestLab kaynakları kendi GitHub deposunda yayımlandı. Upstream Gemstone
+deposuna issue/PR gönderilmedi. PR taslakları incelenebilir hazır metindir;
+hedef dalda yeniden doğrulama ve upstream gönderimi ayrı adımdır.
 
 ## Test altyapısını incelemeye bölme
 
