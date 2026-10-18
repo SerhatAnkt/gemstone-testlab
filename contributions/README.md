@@ -1,8 +1,9 @@
-# Proposed fixes
+# Proposed fixes for Gemstone examples
 
 These five fixes are for Gemstone examples at commit
 `2619a7584d39203a057abc08ab7c6698dc476868`.
-They have not been sent upstream. Each patch works on its own.
+Each patch was tested on its own. These changes have not been sent upstream
+and still need to be checked against the latest examples.
 
 | Fix | Problem | Selected tests | Draft description |
 | --- | --- | --- | --- |

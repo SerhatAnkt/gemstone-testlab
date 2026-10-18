@@ -1,6 +1,7 @@
-# Release checklist
+# Release status
 
-The code is on GitHub. A tagged release has not been published yet.
+This table tracks the checks for the first release. The code is on GitHub;
+a tagged release has not been published yet.
 
 | Item | Status |
 | --- | --- |

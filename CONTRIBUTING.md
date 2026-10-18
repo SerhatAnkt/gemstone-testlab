@@ -1,8 +1,8 @@
 # Contributing
 
-Start with [setup](QUICKSTART.md) and run the host and serial tests.
-Small changes are easier to review. Explain the problem, the change, and how
-you tested it.
+Follow the [installation guide](QUICKSTART.md) and run the host and serial tests
+before making changes. Keep each contribution focused on one problem. Include
+a short description of the change and the test results.
 
 ## Report a bug
 

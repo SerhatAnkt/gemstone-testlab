@@ -1,8 +1,8 @@
-# Development log
+# Development history
 
-These are the earlier project notes, written in Turkish. Some paths refer to
-files in the older full ZIP. Those files are not part of this Git repository.
-For a short result summary, see [RESULTS.md](../RESULTS.md).
+These Turkish notes record the earlier work packages and local test results.
+Some paths refer to files in the older full ZIP, which are not included in this
+Git repository. Current results and limits are in [RESULTS.md](../RESULTS.md).
 
 
 Güncelleme: 18 Ekim 2026 Türkiye saati. WP-02, WP-03 ve WP-04 doğrulamaları

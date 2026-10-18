@@ -1,4 +1,4 @@
-# Test results
+# Test results and known limits
 
 The first full passing GitHub Actions run was on 18 October 2026:
 [run #2](https://github.com/SerhatAnkt/gemstone-testlab/actions/runs/39155570890),
@@ -36,7 +36,7 @@ The tests were also checked with deliberately broken data. A changed CAN
 message length and a changed serial byte both caused test failures.
 See the [patch list and draft descriptions](contributions/README.md).
 
-## First Actions failure
+## CI setup and fixes
 
 [Run #1](https://github.com/SerhatAnkt/gemstone-testlab/actions/runs/39155256787)
 failed because the runner was missing the `vcan` module. The report upload also

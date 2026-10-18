@@ -1,7 +1,7 @@
-# Setup
+# Installation and testing
 
-The tested system is Ubuntu 24.04 x86_64 with Python 3.12. You do not need an O1
-board. Run the commands from the project folder.
+The tested system is Ubuntu 24.04 x86_64 with Python 3.12. An O1 board is not
+required for these checks. Run the commands from the project folder.
 
 ## 1. Get the project
 

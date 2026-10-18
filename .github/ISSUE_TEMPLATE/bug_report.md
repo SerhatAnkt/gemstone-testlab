@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: Tell me what failed and how to try it again
+about: Report a bug with steps and test logs
 title: ''
 labels: ''
 assignees: ''
@@ -10,7 +10,7 @@ assignees: ''
 
 What did you expect? What happened instead?
 
-## How can I try it?
+## Steps to reproduce
 
 Add the exact command, its exit code, and the source commit.
 Say if you used `working-tree` or `proposed-fixes`.
