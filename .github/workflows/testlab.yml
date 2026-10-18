@@ -37,6 +37,7 @@ jobs:
           if-no-files-found: error
           overwrite: true
           retention-days: 14
+          include-hidden-files: true
 
   serial-integration:
     runs-on: ubuntu-24.04
@@ -67,6 +68,7 @@ jobs:
           if-no-files-found: error
           overwrite: true
           retention-days: 14
+          include-hidden-files: true
       - name: Keep controlled failure evidence
         if: always()
         uses: actions/upload-artifact@v4
@@ -76,6 +78,7 @@ jobs:
           if-no-files-found: error
           overwrite: true
           retention-days: 14
+          include-hidden-files: true
 
   linux-integration:
     runs-on: ubuntu-24.04
@@ -91,6 +94,12 @@ jobs:
           sudo apt-get install --no-install-recommends -y build-essential python3 python3-venv iproute2 kmod sudo git
           python3 -m venv .venv-testlab
           .venv-testlab/bin/python -m pip install --require-hashes -r tests/requirements.txt
+      - name: Prepare the running kernel vcan module
+        run: |
+          if ! modinfo vcan >/dev/null 2>&1; then
+            sudo apt-get install --no-install-recommends -y "linux-modules-extra-$(uname -r)"
+          fi
+          sudo -n modprobe vcan
       - name: Validate the explicitly patched CAN copy as normal runner user
         run: .venv-testlab/bin/python -m tests.testlab ci --profile can --source-profile proposed-fixes --output artifacts/ci-can
       - name: Keep CAN and ownership evidence even on failure
@@ -102,6 +111,7 @@ jobs:
           if-no-files-found: error
           overwrite: true
           retention-days: 14
+          include-hidden-files: true
 
   aarch64-cross-build:
     runs-on: ubuntu-24.04
@@ -128,6 +138,7 @@ jobs:
           if-no-files-found: error
           overwrite: true
           retention-days: 14
+          include-hidden-files: true
 
   acceptance:
     needs: [host-checks, serial-integration, linux-integration, aarch64-cross-build]
@@ -164,3 +175,4 @@ jobs:
           if-no-files-found: error
           overwrite: true
           retention-days: 14
+          include-hidden-files: true

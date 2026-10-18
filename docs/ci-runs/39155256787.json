@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "repository": "SerhatAnkt/gemstone-testlab",
+  "run_id": 39155256787,
+  "run_url": "https://github.com/SerhatAnkt/gemstone-testlab/actions/runs/39155256787",
+  "commit": "9b704b21822aadfb28c532c91009538e36d0220a",
+  "conclusion": "failure",
+  "jobs": {
+    "host-checks": "success",
+    "serial-integration": "success",
+    "linux-integration": "failure",
+    "aarch64-cross-build": "success",
+    "acceptance": "failure"
+  },
+  "can_error": "modprobe: FATAL: Module vcan not found in directory /lib/modules/6.17.0-1022-azure",
+  "acceptance_error": [
+    "Missing evidence: host-evidence/test_installed_content_mode_addition_removal_and_link_changes_are_detected-e8210jf8/installed/.testlab-toolchain-install.json"
+  ],
+  "fixes": [
+    "Install the extra modules package matching the running kernel when vcan is absent",
+    "Upload hidden files from the dedicated evidence directories to preserve the complete inventory"
+  ],
+  "board_runtime": "not_run",
+  "arm64_execution_mode": "cross_build_only"
+}

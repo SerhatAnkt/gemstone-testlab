@@ -185,3 +185,20 @@ raporları tarihsel olarak korunur, güncel koşu gibi yeniden etiketlenmez.
 depo oluşturulmadan önceki tarihsel engeli kaydeder. Yeni proje deposunda
 gerçek run bağlantısı ve indirilen artifact'ler doğrulanınca bu madde kapatılabilir. O1 donanımı,
 fiziksel UART/CAN ve gerçek zamanlı davranış bu CI kabulünün dışında kalır.
+
+
+## İlk hosted koşuda bulunan ortam farkları
+
+İlk gerçek GitHub koşusunda host, seri ve AArch64 işleri geçti. CAN işi,
+runner'ın `6.17.0-1022-azure` çekirdeğinde `vcan` bulunmadığı için kod 2 verdi.
+İş akışı artık modül yoksa yalnız çalışan çekirdekle birebir eşleşen
+`linux-modules-extra-$(uname -r)` paketini kurar ve modülü yükler. Kurulum veya
+modül yükleme başarısızsa zorunlu CAN kabulü yine başarısız olur.
+
+Aynı koşunun toplam denetimi, host test fixture'ındaki gizli
+`.testlab-toolchain-install.json` dosyası artifact yüklemesinde dışlandığı için
+eksik kanıtı reddetti. Altı upload adımı artık yalnız kendilerine ayrılmış
+kanıt dizinlerinde `include-hidden-files: true` kullanır. Böylece inventory'ye
+kaydedilen gizli dosyalar da taşınır; eksik dosya kontrolü gevşetilmez.
+
+İlk başarısız koşu ve düzeltme sonraki başarılı koşudan ayrı kaydedilir.
