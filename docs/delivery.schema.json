@@ -1,0 +1,158 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:gemstone-testlab:delivery:1",
+  "title": "Gemstone TestLab local delivery reports v1",
+  "oneOf": [
+    {"$ref": "#/$defs/release"},
+    {"$ref": "#/$defs/contributions"},
+    {"$ref": "#/$defs/delivery"}
+  ],
+  "$defs": {
+    "status": {"enum": ["passed", "failed", "error"]},
+    "base": {
+      "type": "object",
+      "required": ["schema_version", "type", "status", "started_at", "finished_at", "errors"],
+      "properties": {
+        "schema_version": {"const": 1},
+        "status": {"$ref": "#/$defs/status"},
+        "started_at": {"type": "string"},
+        "finished_at": {"type": "string"},
+        "errors": {"type": "array", "items": {"type": "string"}}
+      },
+      "allOf": [{
+        "if": {"properties": {"status": {"const": "passed"}}},
+        "then": {"properties": {"errors": {"maxItems": 0}}}
+      }]
+    },
+    "local_execution": {
+      "type": "object",
+      "required": ["github_hosted_runner", "board_runtime"],
+      "properties": {
+        "github_hosted_runner": {"const": "not_executed"},
+        "board_runtime": {"const": "not_run"}
+      }
+    },
+    "release": {
+      "allOf": [
+        {"$ref": "#/$defs/base"},
+        {
+          "required": ["exitcode", "profiles", "source_profile", "can_backend", "execution"],
+          "properties": {
+            "type": {"const": "testlab.release"},
+            "exitcode": {"enum": [0, 1, 2]},
+            "source_profile": {"enum": ["working-tree", "proposed-fixes"]},
+            "can_backend": {"enum": ["native", "vm"]},
+            "execution": {"$ref": "#/$defs/local_execution"},
+            "profiles": {
+              "type": "array", "maxItems": 4,
+              "items": {
+                "type": "object",
+                "required": ["profile", "returncode", "launcher_status", "timed_out", "ci_report", "process_report"],
+                "properties": {
+                  "profile": {"enum": ["host", "serial", "can", "aarch64"]},
+                  "returncode": {"type": ["integer", "null"]},
+                  "launcher_status": {"$ref": "#/$defs/status"},
+                  "timed_out": {"type": "boolean"},
+                  "ci_report": {"type": "string"},
+                  "process_report": {"type": "string"}
+                }
+              }
+            }
+          },
+          "allOf": [
+            {
+              "if": {"properties": {"status": {"const": "passed"}}},
+              "then": {
+                "required": ["acceptance_report"],
+                "properties": {
+                  "exitcode": {"const": 0},
+                  "profiles": {"minItems": 4, "items": {"properties": {
+                    "returncode": {"const": 0}, "launcher_status": {"const": "passed"}, "timed_out": {"const": false}
+                  }}}
+                }
+              }
+            },
+            {
+              "if": {"properties": {"status": {"enum": ["failed", "error"]}}},
+              "then": {"properties": {"exitcode": {"enum": [1, 2]}}}
+            }
+          ]
+        }
+      ]
+    },
+    "contributions": {
+      "allOf": [
+        {"$ref": "#/$defs/base"},
+        {
+          "required": ["publication_status", "entries", "original_unchanged", "execution"],
+          "properties": {
+            "type": {"const": "testlab.contribution_check"},
+            "publication_status": {"const": "draft_not_submitted"},
+            "original_unchanged": {"type": "boolean"},
+            "execution": {"$ref": "#/$defs/local_execution"},
+            "entries": {
+              "type": "array", "maxItems": 5,
+              "items": {
+                "type": "object", "required": ["id", "patch", "status"],
+                "properties": {
+                  "id": {"enum": ["01", "02", "03", "04", "05"]},
+                  "patch": {"type": "string"},
+                  "status": {"$ref": "#/$defs/status"},
+                  "patch_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+                },
+                "allOf": [{
+                  "if": {"properties": {"status": {"const": "passed"}}},
+                  "then": {
+                    "required": ["patch_sha256", "changed_files", "baseline", "fixed"],
+                    "properties": {
+                      "baseline": {"required": ["run_report", "counts", "pytest_exitcode"], "properties": {
+                        "status": {"const": "failed"}, "pytest_exitcode": {"const": 1}
+                      }},
+                      "fixed": {"required": ["run_report", "counts", "pytest_exitcode"], "properties": {
+                        "status": {"const": "passed"}, "pytest_exitcode": {"const": 0}
+                      }}
+                    }
+                  }
+                }]
+              }
+            }
+          },
+          "allOf": [{
+            "if": {"properties": {"status": {"const": "passed"}}},
+            "then": {"properties": {
+              "original_unchanged": {"const": true},
+              "entries": {"minItems": 1, "items": {"properties": {"status": {"const": "passed"}}}}
+            }}
+          }]
+        }
+      ]
+    },
+    "delivery": {
+      "allOf": [
+        {"$ref": "#/$defs/base"},
+        {
+          "required": ["checks"],
+          "properties": {
+            "type": {"const": "testlab.delivery_check"},
+            "checks": {"type": "array", "items": {
+              "type": "object", "required": ["name", "exitcode", "result"],
+              "properties": {"name": {"type": "string"}, "exitcode": {"enum": [0, 2]}, "result": {"type": "object"}}
+            }}
+          },
+          "allOf": [{
+            "if": {"properties": {"status": {"const": "passed"}}},
+            "then": {
+              "required": ["deterministic_zip", "exported_files_match", "original_unchanged"],
+              "properties": {
+                "deterministic_zip": {"const": true},
+                "original_unchanged": {"const": true},
+                "exported_files_match": {"type": "integer", "minimum": 1},
+                "checks": {"minItems": 13}
+              }
+            }
+          }]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,466 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Gemstone TestLab results v1",
+  "oneOf": [
+    {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "type",
+        "run_id",
+        "status",
+        "started_at",
+        "cases"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": 1
+        },
+        "type": {
+          "const": "testlab.run"
+        },
+        "run_id": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "running",
+            "passed",
+            "failed",
+            "error",
+            "skipped",
+            "not_run"
+          ]
+        },
+        "cases": {
+          "type": "array"
+        },
+        "pytest_exitcode": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 5
+        },
+        "counts": {
+          "type": "object",
+          "required": [
+            "passed",
+            "failed",
+            "error",
+            "skipped",
+            "not_run"
+          ]
+        }
+      }
+    },
+    {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "type",
+        "run_id",
+        "id",
+        "nodeid",
+        "suite",
+        "status",
+        "phases",
+        "expected",
+        "actual",
+        "artifacts"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": 1
+        },
+        "type": {
+          "const": "testlab.case"
+        },
+        "run_id": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "nodeid": {
+          "type": "string"
+        },
+        "suite": {
+          "enum": [
+            "can",
+            "serial",
+            "host"
+          ]
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "running",
+            "passed",
+            "failed",
+            "error",
+            "skipped",
+            "not_run"
+          ]
+        },
+        "phases": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "phase",
+              "outcome",
+              "duration_seconds"
+            ],
+            "properties": {
+              "phase": {
+                "enum": [
+                  "setup",
+                  "call",
+                  "teardown"
+                ]
+              },
+              "outcome": {
+                "enum": [
+                  "passed",
+                  "failed",
+                  "skipped"
+                ]
+              },
+              "duration_seconds": {
+                "type": "number",
+                "minimum": 0
+              },
+              "error_type": {
+                "type": "string"
+              },
+              "message": {
+                "type": "string"
+              },
+              "detail": {
+                "type": "string"
+              },
+              "detail_truncated": {
+                "type": "boolean"
+              }
+            }
+          }
+        },
+        "parameters": {
+          "type": "object"
+        },
+        "artifacts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "path",
+              "sha256",
+              "size_bytes"
+            ],
+            "properties": {
+              "path": {
+                "type": "string",
+                "pattern": "^[^/].*"
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "size_bytes": {
+                "type": "integer",
+                "minimum": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "type",
+        "run_id",
+        "case",
+        "reproduction"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": 1
+        },
+        "type": {
+          "const": "testlab.case_failure"
+        },
+        "run_id": {
+          "type": "string"
+        },
+        "case": {
+          "$ref": "#/$defs/case"
+        },
+        "reproduction": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/reproduction_spec"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "type",
+        "run_id",
+        "pytest_exitcode",
+        "collection_errors",
+        "policy_errors"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": 1
+        },
+        "type": {
+          "const": "testlab.run_failure"
+        },
+        "run_id": {
+          "type": "string"
+        },
+        "pytest_exitcode": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 5
+        }
+      }
+    },
+    {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "type",
+        "status",
+        "pytest_exitcode",
+        "nodeid",
+        "same_exact_node",
+        "same_case_outcome",
+        "source_digest",
+        "harness_digest"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": 1
+        },
+        "type": {
+          "const": "testlab.reproduction"
+        },
+        "status": {
+          "enum": [
+            "passed",
+            "failed",
+            "error"
+          ]
+        },
+        "pytest_exitcode": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 5
+        },
+        "nodeid": {
+          "type": "string"
+        },
+        "same_exact_node": {
+          "type": "boolean"
+        },
+        "same_case_outcome": {
+          "type": "boolean"
+        },
+        "source_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "harness_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "case": {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "type",
+        "run_id",
+        "id",
+        "nodeid",
+        "suite",
+        "status",
+        "phases",
+        "expected",
+        "actual",
+        "artifacts"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": 1
+        },
+        "type": {
+          "const": "testlab.case"
+        },
+        "run_id": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "nodeid": {
+          "type": "string"
+        },
+        "suite": {
+          "enum": [
+            "can",
+            "serial",
+            "host"
+          ]
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "running",
+            "passed",
+            "failed",
+            "error",
+            "skipped",
+            "not_run"
+          ]
+        },
+        "phases": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "phase",
+              "outcome",
+              "duration_seconds"
+            ],
+            "properties": {
+              "phase": {
+                "enum": [
+                  "setup",
+                  "call",
+                  "teardown"
+                ]
+              },
+              "outcome": {
+                "enum": [
+                  "passed",
+                  "failed",
+                  "skipped"
+                ]
+              },
+              "duration_seconds": {
+                "type": "number",
+                "minimum": 0
+              },
+              "error_type": {
+                "type": "string"
+              },
+              "message": {
+                "type": "string"
+              },
+              "detail": {
+                "type": "string"
+              },
+              "detail_truncated": {
+                "type": "boolean"
+              }
+            }
+          }
+        },
+        "parameters": {
+          "type": "object"
+        },
+        "artifacts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "path",
+              "sha256",
+              "size_bytes"
+            ],
+            "properties": {
+              "path": {
+                "type": "string",
+                "pattern": "^[^/].*"
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "size_bytes": {
+                "type": "integer",
+                "minimum": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    "reproduction_spec": {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "nodeid",
+        "suite",
+        "source_digest",
+        "harness_digest",
+        "source_mode",
+        "timeout_scale"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": 1
+        },
+        "nodeid": {
+          "type": "string"
+        },
+        "suite": {
+          "enum": [
+            "host",
+            "can",
+            "serial"
+          ]
+        },
+        "source_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "harness_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "source_mode": {
+          "enum": [
+            "packaged",
+            "snapshot"
+          ]
+        },
+        "timeout_scale": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "command": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

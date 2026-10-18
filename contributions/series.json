@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "upstream_revision": "2619a7584d39203a057abc08ab7c6698dc476868",
+  "publication_status": "draft_not_submitted",
+  "entries": [
+    {
+      "id": "01",
+      "title": "canbus/c: check SIOCGIFINDEX before binding the sender",
+      "patch": "0001-can-c-sender-check-interface-index.patch",
+      "profile": "can",
+      "files": ["canbus/c/sender/main.c"],
+      "nodes": ["tests/can/test_arguments.py::test_can_argument_error[nonexistent-c.sender]"],
+      "pr_body": "01-can-interface.md"
+    },
+    {
+      "id": "02",
+      "title": "serial: preserve raw input bytes in the C and C++ terminals",
+      "patch": "0002-serial-preserve-raw-input-bytes.patch",
+      "profile": "serial",
+      "files": ["serial/c/main.c", "serial/cpp/serial_terminal.cpp"],
+      "nodes": [
+        "tests/serial/test_terminal.py::test_serial_receive[binary-crlf-c]",
+        "tests/serial/test_terminal.py::test_serial_receive[binary-crlf-cpp]",
+        "tests/serial/test_terminal.py::test_serial_fragmented_duplex[c]",
+        "tests/serial/test_terminal.py::test_serial_fragmented_duplex[cpp]"
+      ],
+      "pr_body": "02-serial-raw-input.md"
+    },
+    {
+      "id": "03",
+      "title": "serial: reject malformed baud arguments before opening the device",
+      "patch": "0003-serial-reject-partial-baud-arguments.patch",
+      "profile": "serial",
+      "files": ["serial/c/main.c", "serial/cpp/main.cpp"],
+      "nodes": [
+        "tests/serial/test_arguments.py::test_serial_bad_baud[9600oops-c]",
+        "tests/serial/test_arguments.py::test_serial_bad_baud[9600oops-cpp]"
+      ],
+      "pr_body": "03-serial-baud.md"
+    },
+    {
+      "id": "04",
+      "title": "serial/python: read stdin without buffering in the select loop",
+      "patch": "0004-serial-python-read-unbuffered-stdin.patch",
+      "profile": "serial",
+      "files": ["serial/python/serial_terminal.py"],
+      "nodes": [
+        "tests/serial/test_terminal.py::test_serial_transmit[text-burst-python]",
+        "tests/serial/test_terminal.py::test_serial_transmit[binary-burst-python]",
+        "tests/serial/test_terminal.py::test_serial_fragmented_duplex[python]"
+      ],
+      "pr_body": "04-python-stdin.md"
+    },
+    {
+      "id": "05",
+      "title": "serial/python: preserve argparse exit codes for help",
+      "patch": "0005-serial-python-preserve-argparse-exit-code.patch",
+      "profile": "serial",
+      "files": ["serial/python/main.py"],
+      "nodes": [
+        "tests/serial/test_arguments.py::test_serial_help[-h-python]",
+        "tests/serial/test_arguments.py::test_serial_help[--help-python]"
+      ],
+      "pr_body": "05-python-help.md"
+    }
+  ]
+}

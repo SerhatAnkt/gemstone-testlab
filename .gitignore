@@ -1,0 +1,7 @@
+/build/
+/dist/
+/artifacts/
+__pycache__/
+*.pyc
+.venv-testlab/
+.pytest_cache/

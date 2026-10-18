@@ -1,0 +1,17 @@
+diff --git a/canbus/c/sender/main.c b/canbus/c/sender/main.c
+--- a/canbus/c/sender/main.c
++++ b/canbus/c/sender/main.c
+@@ -75,7 +75,12 @@ int main(int argc, char* argv[])
+     }
+ 
+     strcpy(ifr.ifr_name, ifname);
+-    ioctl(g_sock, SIOCGIFINDEX, &ifr);
++    if (ioctl(g_sock, SIOCGIFINDEX, &ifr) < 0)
++    {
++        perror("Error getting interface index");
++        close(g_sock);
++        return EXIT_FAILURE;
++    }
+ 
+     addr.can_family = AF_CAN;
+     addr.can_ifindex = ifr.ifr_ifindex;

@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Gemstone TestLab CI evidence v1",
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "profile": {"enum": ["host", "serial", "can", "aarch64"]},
+    "manifest": {
+      "type": "object", "required": ["digest", "files"],
+      "properties": {
+        "digest": {"$ref": "#/$defs/digest"},
+        "files": {
+          "type": "array", "minItems": 0,
+          "items": {"type": "object", "required": ["path", "sha256", "size_bytes"],
+            "properties": {"path": {"type": "string", "minLength": 1},
+              "sha256": {"$ref": "#/$defs/digest"}, "size_bytes": {"type": "integer", "minimum": 0}}}
+        }
+      }
+    }
+  },
+  "oneOf": [
+    {
+      "type": "object",
+      "required": ["schema_version", "type", "profile", "status", "exitcode", "errors", "inputs_unchanged", "evidence", "execution", "github", "repository"],
+      "properties": {
+        "schema_version": {"const": 1}, "type": {"const": "testlab.ci"},
+        "profile": {"$ref": "#/$defs/profile"},
+        "status": {"enum": ["passed", "failed", "error"]},
+        "exitcode": {"enum": [0, 1, 2]},
+        "errors": {"type": "array", "items": {"type": "string"}},
+        "inputs_unchanged": {"type": "boolean"},
+        "source_profile": {"enum": ["working-tree", "proposed-fixes"]},
+        "contract_sha256": {"$ref": "#/$defs/digest"},
+        "evidence": {"$ref": "#/$defs/manifest"},
+        "execution": {"type": "object", "required": ["github_hosted_runner", "board_runtime", "arm64_build", "host_runtime"],
+          "properties": {"board_runtime": {"const": "not_run"},
+            "github_hosted_runner": {"enum": ["not_executed", "executed"]}}},
+        "github": {"type": "object"}, "repository": {"type": "object"}
+      },
+      "allOf": [
+        {"if": {"properties": {"status": {"const": "passed"}}},
+          "then": {"required": ["contract_sha256", "harness", "source_input", "tested_source", "build_report"],
+            "properties": {"exitcode": {"const": 0}, "inputs_unchanged": {"const": true},
+              "errors": {"maxItems": 0}, "build_report": {"type": "string", "minLength": 1},
+              "evidence": {"properties": {"files": {"minItems": 1}}}}},
+          "else": {"properties": {"exitcode": {"enum": [1, 2]}, "errors": {"minItems": 1}}}},
+        {"if": {"properties": {"profile": {"const": "aarch64"}, "status": {"const": "passed"}}},
+          "then": {"required": ["execution_mode"], "properties": {"execution_mode": {"const": "cross_build_only"}}}},
+        {"if": {"properties": {"profile": {"enum": ["host", "serial", "can"]}, "status": {"const": "passed"}}},
+          "then": {"required": ["pytest_report", "pytest_exitcode"],
+            "properties": {"pytest_report": {"type": "string", "minLength": 1}, "pytest_exitcode": {"const": 0}}}}
+      ]
+    },
+    {
+      "type": "object",
+      "required": ["schema_version", "type", "status", "exitcode", "errors", "profiles", "github_hosted_runner"],
+      "properties": {
+        "schema_version": {"const": 1}, "type": {"const": "testlab.ci_acceptance"},
+        "status": {"enum": ["passed", "error"]}, "exitcode": {"enum": [0, 1]},
+        "errors": {"type": "array", "items": {"type": "string"}},
+        "profiles": {"type": "array", "items": {"$ref": "#/$defs/profile"}},
+        "github_hosted_runner": {"enum": ["not_executed", "passed"]},
+        "tested_commit": {"oneOf": [{"type": "null"}, {"type": "string", "pattern": "^[0-9a-f]{40}$"}]},
+        "source_digest": {"$ref": "#/$defs/digest"}, "harness_digest": {"$ref": "#/$defs/digest"}
+      },
+      "allOf": [
+        {"if": {"properties": {"status": {"const": "passed"}}},
+          "then": {"required": ["tested_commit", "source_digest", "harness_digest"],
+            "properties": {"exitcode": {"const": 0}, "errors": {"maxItems": 0},
+              "profiles": {"minItems": 4, "maxItems": 4, "uniqueItems": true}}},
+          "else": {"properties": {"exitcode": {"const": 1}, "errors": {"minItems": 1}}}},
+        {"if": {"properties": {"github_hosted_runner": {"const": "passed"}}},
+          "then": {"required": ["run_url"], "properties": {"status": {"const": "passed"},
+            "run_url": {"type": "string", "pattern": "^https://github\\.com/[^/]+/[^/]+/actions/runs/[0-9]+$"},
+            "tested_commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"}}}}
+      ]
+    }
+  ]
+}

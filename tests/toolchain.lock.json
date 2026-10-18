@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "repository": "https://github.com/t3gemstone/toolchains",
+  "release": "v1.0.6",
+  "archive": {
+    "name": "t3gemstone-toolchains-ubuntu-jammy-minimal.tar.gz",
+    "url": "https://github.com/t3gemstone/toolchains/releases/download/v1.0.6/t3gemstone-toolchains-ubuntu-jammy-minimal.tar.gz",
+    "sha256": "cd53ee3604329f75ac3fbd476467738d738a3ce92c0c91df9d6d9414f4d09a23",
+    "size_bytes": 298905352
+  },
+  "installed_tree": {
+    "sha256": "841cb555e7fc2b33fd5c38c6d788a3037328ce6295c24d7c62abd466f0d2f975",
+    "entries": 9712,
+    "algorithm": "sha256 over sorted path/kind/file SHA-256/size/executable-bit or symlink target records"
+  },
+  "host": {
+    "system": "Linux",
+    "machine": "x86_64"
+  },
+  "target": {
+    "triple": "aarch64-none-linux-gnu",
+    "elf_machine": 183,
+    "elf_class_bits": 64,
+    "byte_order": "little"
+  },
+  "compiler_version": "11.2.1",
+  "sysroot": "ubuntu-jammy",
+  "execution_mode": "cross_build_only",
+  "normalized_symlinks": [
+    {
+      "path": "sysroot/usr/lib/ssl/certs",
+      "archive_target": "/etc/ssl/certs",
+      "installed_target": "../../../etc/ssl/certs"
+    },
+    {
+      "path": "sysroot/usr/lib/ssl/private",
+      "archive_target": "/etc/ssl/private",
+      "installed_target": "../../../etc/ssl/private"
+    }
+  ],
+  "env_sha256": "41439f3c89864dc3d5fc5455717e5f87e1e191b0705cfea51b9b34666b59b33f"
+}

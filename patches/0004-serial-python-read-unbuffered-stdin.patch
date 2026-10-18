@@ -1,0 +1,19 @@
+--- a/serial/python/serial_terminal.py
++++ b/serial/python/serial_terminal.py
+@@ -15,6 +15,7 @@
+ #
+ # SPDX-License-Identifier: Apache-2.0
+ 
++import os
+ import select
+ import sys
+ import termios
+@@ -150,7 +151,7 @@
+                 # Handle keyboard input
+                 if stdin_fd in ready:
+                     try:
+-                        data = sys.stdin.buffer.read(1)
++                        data = os.read(stdin_fd, 1)
+                         if data:
+                             # Check for Ctrl+C (ASCII 3)
+                             if b"\x03" in data:

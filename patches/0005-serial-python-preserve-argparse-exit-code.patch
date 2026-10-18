@@ -1,0 +1,13 @@
+--- a/serial/python/main.py
++++ b/serial/python/main.py
+@@ -54,8 +54,8 @@
+ 
+     try:
+         args = parser.parse_args()
+-    except SystemExit:
+-        return 1
++    except SystemExit as exc:
++        return exc.code
+ 
+     if args.baud <= 0:
+         print(f"Invalid baud rate: {args.baud}")

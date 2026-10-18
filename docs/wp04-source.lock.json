@@ -1,0 +1,117 @@
+{
+  "repository": "https://github.com/t3gemstone/examples",
+  "revision": "2619a7584d39203a057abc08ab7c6698dc476868",
+  "mode": "selected_unmodified_upstream_files",
+  "files": {
+    "canbus/c/sender/main.c": {
+      "git_blob_sha1": "a5e08a2aa70a0cdcd053452875142def81a0b15e",
+      "sha256": "08bf197de6d6f1a35be146ff3e889fc836fc14d7bec18c50163f2eb896469850",
+      "size_bytes": 3408
+    },
+    "canbus/c/sender/Makefile": {
+      "git_blob_sha1": "553765f09b4f3d293290b42f93cb9054bca162d7",
+      "sha256": "8768aef0858389250d4291758085859619f09ca7670064ad84ccc8571ad5e2dc",
+      "size_bytes": 143
+    },
+    "serial/c/main.c": {
+      "git_blob_sha1": "f581809d7dc0179dbbd1a352c7e1320719da33c8",
+      "sha256": "b86992bff7c1845946dfca482e05bc1de0819392b7f71269f470b4ced0fe84eb",
+      "size_bytes": 8309
+    },
+    "serial/c/Makefile": {
+      "git_blob_sha1": "ec4ba33ec24f7efd5fde3bd47a8a6b184133eaf3",
+      "sha256": "bcd553902d7da1113a97a2d67a3fd0a33e84eab9a6f181bdbe96ba99187f4636",
+      "size_bytes": 129
+    },
+    "common.mk": {
+      "git_blob_sha1": "27c2ce56c5018628430f8698366ae5e44182baf6",
+      "sha256": "f7d13a18cde8b7360c92a792ae131e4d59324478664c290be594d81aea7d1dc6",
+      "size_bytes": 1566
+    },
+    "LICENSE": {
+      "git_blob_sha1": "6d8fedfcaee8ce02293613fee72627cb55a14071",
+      "sha256": "242b5cc11a3787c79b0f45fc244aa6d78003975862db90ea881aa4c39fa8da05",
+      "size_bytes": 11362
+    },
+    "canbus/c/receiver/main.c": {
+      "git_blob_sha1": "a0b66f140009a3ec37c63dc5b5b15e4d548c7ed7",
+      "sha256": "3a8580313b1b1789c58c593c01ced881785a2b2f2fc9038b52ed143c8740a00d",
+      "size_bytes": 3689
+    },
+    "canbus/c/receiver/Makefile": {
+      "git_blob_sha1": "b55594498e5ba26b6d6e85efc9646d7aa59652ab",
+      "sha256": "8088269e04e5b6382ceca4dcb99f4b25ae367f6aeb3bd350a3fdf69e21752f6e",
+      "size_bytes": 145
+    },
+    "canbus/cpp/sender/main.cpp": {
+      "git_blob_sha1": "9d4fb5bd522d08a98a39a2693110b17715920e86",
+      "sha256": "d581f6f1f73b6f72bedccdd331f0c82825e999b4374305aa7f2c6fc6163dd7dd",
+      "size_bytes": 1835
+    },
+    "canbus/cpp/sender/Makefile": {
+      "git_blob_sha1": "1f28387e35237f9dbf278e7c9b7a692b7ef45156",
+      "sha256": "2bda6bfac66b929c79bbd422ed4a50a3d3bf9a6a84de101a9bf8b18bbd8ffae6",
+      "size_bytes": 164
+    },
+    "canbus/cpp/receiver/main.cpp": {
+      "git_blob_sha1": "bfee4646e467194db7128341be4244198c7fcd10",
+      "sha256": "6625d7049c216f3ddb58b76d8c3d5893ee7998434613c32081239c0d41d5e182",
+      "size_bytes": 1695
+    },
+    "canbus/cpp/receiver/Makefile": {
+      "git_blob_sha1": "9691f3890e742cb9f9edd7a4b274775fc969f43f",
+      "sha256": "6d14501afe2c4caa807691ae44448093438c4e2950d3135cbaa41190a084a25e",
+      "size_bytes": 168
+    },
+    "serial/cpp/main.cpp": {
+      "git_blob_sha1": "5ae451003f47cc73cb45e5a4ac1db8a77f2ee037",
+      "sha256": "839c08d4108e45a47918f3146225d535323630883090c97ca144038a8d75c5fe",
+      "size_bytes": 3167
+    },
+    "serial/cpp/Makefile": {
+      "git_blob_sha1": "130b7c531c848f302fb3765beb810d1daf8ead68",
+      "sha256": "11a70f364ce9f3e5f235ee7e827be601ef174d4d524618bb0dd89d598533c959",
+      "size_bytes": 155
+    },
+    "canbus/cpp/sender/can_sender.cpp": {
+      "git_blob_sha1": "ae335603957e493dc56557d05bd9cade48b2d4d1",
+      "sha256": "542f945f76ad7fb1b54b7f90e701333fc3b186e6ef4a537b986c24bff1244ec1",
+      "size_bytes": 3845
+    },
+    "canbus/cpp/sender/can_sender.h": {
+      "git_blob_sha1": "b415b82009e04ae65f1e46af2b291a2fc34f4e61",
+      "sha256": "d063ce8bdc79d42f5f47acca9009573a0e4af7d22a8c81bbf890dbd841c64136",
+      "size_bytes": 1293
+    },
+    "canbus/cpp/receiver/can_receiver.cpp": {
+      "git_blob_sha1": "08c32da96d0e9f1c268fbcf752a5f7fc947b30d9",
+      "sha256": "fb241197630a0342ea8ba3a3a73eda1312bda28fd6a29a3d6d4cb0f7e7583156",
+      "size_bytes": 3932
+    },
+    "canbus/cpp/receiver/can_receiver.h": {
+      "git_blob_sha1": "0fca43e6603d4ef018485243a3c8779efd90a98c",
+      "sha256": "0e3ed54017b1710857bc963c74d8a2e2e0e5cd0e40bc77a5d5fd1aaf93c30419",
+      "size_bytes": 1304
+    },
+    "serial/cpp/serial_terminal.cpp": {
+      "git_blob_sha1": "46ac292ffe59c86ea976e4453fa70682dac6c19b",
+      "sha256": "64b609b52544cf8214aff3864035f24b9d04966fd352ac6d48eb99d7d5c4b9d2",
+      "size_bytes": 7176
+    },
+    "serial/cpp/serial_terminal.h": {
+      "git_blob_sha1": "fb05815703ccbf5ffe668a2383b7165f86ba08ad",
+      "sha256": "27dbf88375c146a8fd860338e78c95f1946ae990b64b5ff87212bb1ab0cbf467",
+      "size_bytes": 1877
+    },
+    "canbus/python/sender/main.py": {
+      "git_blob_sha1": "75e9804db10e56796e60b27f3e4763e37a518aa4",
+      "sha256": "05d4318dc890018b8ca2d7bdb4e56dd8ee228df00510ca52f837bfcced94e83a",
+      "size_bytes": 1667
+    },
+    "canbus/python/sender/can_sender.py": {
+      "git_blob_sha1": "2ca403151bd72a75f9bedab01956a11e7765d7e6",
+      "sha256": "0e9df3fecb26892c125b3e0383034a9817f2a6861a4175cb94ba66d84cb56312",
+      "size_bytes": 3668
+    }
+  }
+}

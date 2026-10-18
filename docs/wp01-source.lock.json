@@ -1,0 +1,37 @@
+{
+  "repository": "https://github.com/t3gemstone/examples",
+  "revision": "2619a7584d39203a057abc08ab7c6698dc476868",
+  "mode": "selected_unmodified_upstream_files",
+  "files": {
+    "canbus/c/sender/main.c": {
+      "git_blob_sha1": "a5e08a2aa70a0cdcd053452875142def81a0b15e",
+      "sha256": "08bf197de6d6f1a35be146ff3e889fc836fc14d7bec18c50163f2eb896469850",
+      "size_bytes": 3408
+    },
+    "canbus/c/sender/Makefile": {
+      "git_blob_sha1": "553765f09b4f3d293290b42f93cb9054bca162d7",
+      "sha256": "8768aef0858389250d4291758085859619f09ca7670064ad84ccc8571ad5e2dc",
+      "size_bytes": 143
+    },
+    "serial/c/main.c": {
+      "git_blob_sha1": "f581809d7dc0179dbbd1a352c7e1320719da33c8",
+      "sha256": "b86992bff7c1845946dfca482e05bc1de0819392b7f71269f470b4ced0fe84eb",
+      "size_bytes": 8309
+    },
+    "serial/c/Makefile": {
+      "git_blob_sha1": "ec4ba33ec24f7efd5fde3bd47a8a6b184133eaf3",
+      "sha256": "bcd553902d7da1113a97a2d67a3fd0a33e84eab9a6f181bdbe96ba99187f4636",
+      "size_bytes": 129
+    },
+    "common.mk": {
+      "git_blob_sha1": "27c2ce56c5018628430f8698366ae5e44182baf6",
+      "sha256": "f7d13a18cde8b7360c92a792ae131e4d59324478664c290be594d81aea7d1dc6",
+      "size_bytes": 1566
+    },
+    "LICENSE": {
+      "git_blob_sha1": "6d8fedfcaee8ce02293613fee72627cb55a14071",
+      "sha256": "242b5cc11a3787c79b0f45fc244aa6d78003975862db90ea881aa4c39fa8da05",
+      "size_bytes": 11362
+    }
+  }
+}

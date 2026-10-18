@@ -1,0 +1,24 @@
+--- a/serial/c/main.c
++++ b/serial/c/main.c
+@@ -107,7 +107,8 @@
+ 
+     // Configure 8N1 (8 data bits, no parity, 1 stop bit)
+     tty.c_cflag = (tty.c_cflag & ~CSIZE) | CS8; // 8-bit chars
+-    tty.c_iflag &= ~IGNBRK;                     // disable break processing
++    // Preserve input bytes without line-ending or parity transformations.
++    tty.c_iflag &= ~(IGNBRK | BRKINT | PARMRK | ISTRIP | INLCR | IGNCR | ICRNL | INPCK);
+     tty.c_lflag = 0;                            // no signaling chars, no echo,
+                                                 // no canonical processing
+     tty.c_oflag = 0;                            // no remapping, no delays
+--- a/serial/cpp/serial_terminal.cpp
++++ b/serial/cpp/serial_terminal.cpp
+@@ -68,7 +68,8 @@
+ 
+     // Configure 8N1 (8 data bits, no parity, 1 stop bit)
+     tty.c_cflag = (tty.c_cflag & ~CSIZE) | CS8; // 8-bit chars
+-    tty.c_iflag &= ~IGNBRK;                     // disable break processing
++    // Preserve input bytes without line-ending or parity transformations.
++    tty.c_iflag &= ~(IGNBRK | BRKINT | PARMRK | ISTRIP | INLCR | IGNCR | ICRNL | INPCK);
+     tty.c_lflag = 0;                            // no signaling chars, no echo,
+                                                 // no canonical processing
+     tty.c_oflag = 0;                            // no remapping, no delays

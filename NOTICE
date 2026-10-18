@@ -1,0 +1,24 @@
+Gemstone TestLab — WP-01 through WP-10 local test and contribution infrastructure
+
+This is a proposed community contribution, not an official T3 Foundation release.
+
+Selected files under upstream/examples/ are reproduced without modification from:
+https://github.com/t3gemstone/examples
+Commit: 2619a7584d39203a057abc08ab7c6698dc476868
+Copyright (c) 2025 by T3 Foundation. All rights reserved.
+License: Apache License 2.0 (see LICENSE and upstream/examples/LICENSE).
+Exact selected paths and hashes: source.lock.json.
+
+The independent probe scripts, CAN reference endpoints and test harness are new
+work provided under the Apache License 2.0. The reference endpoints do not import
+or reuse the Gemstone sender/receiver implementations. The controlled mutation
+experiment changes a private copy only; packaged upstream files remain original.
+
+Four proposed serial patches are supplied separately under patches/. They are
+validated only in explicitly prepared copies. The 27 vendored upstream files
+remain unmodified. Serial tests use independent Linux PTY peers and expected bytes.
+
+SDK verification, AArch64 build-only checks, local/hosted CI gates, delivery tools,
+and contribution drafts are community additions. The SDK itself is not bundled.
+The five application patches and PR drafts have not been submitted upstream.
+Local acceptance is separate from pending hosted CI and physical board execution.

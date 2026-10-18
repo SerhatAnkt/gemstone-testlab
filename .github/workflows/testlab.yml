@@ -1,0 +1,166 @@
+name: Gemstone TestLab
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  TESTLAB_EXPECTED_COMMIT: ${{ github.event.pull_request.head.sha || github.sha }}
+
+jobs:
+  host-checks:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.TESTLAB_EXPECTED_COMMIT }}
+          persist-credentials: false
+      - name: Install host prerequisites
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y build-essential python3 python3-venv git
+          python3 -m venv .venv-testlab
+          .venv-testlab/bin/python -m pip install --require-hashes -r tests/requirements.txt
+      - name: Build and validate the current checkout
+        run: .venv-testlab/bin/python -m tests.testlab ci --profile host --output artifacts/ci-host
+      - name: Keep host evidence even on failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: testlab-host-evidence
+          path: artifacts/ci-host/
+          if-no-files-found: error
+          overwrite: true
+          retention-days: 14
+
+  serial-integration:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.TESTLAB_EXPECTED_COMMIT }}
+          persist-credentials: false
+      - name: Install serial prerequisites
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y build-essential python3 python3-venv git
+          python3 -m venv .venv-testlab
+          .venv-testlab/bin/python -m pip install --require-hashes -r tests/requirements-serial.txt
+      - name: Validate the explicitly patched serial copy
+        run: .venv-testlab/bin/python -m tests.testlab ci --profile serial --source-profile proposed-fixes --output artifacts/ci-serial
+      - name: Prove actual PTY tests reject a corrupted byte
+        run: |
+          python3 tools/prepare_serial_fixes.py --output build/serial-mutation-fixed
+          .venv-testlab/bin/python tools/check_serial_mutation.py --source-root build/serial-mutation-fixed --output artifacts/serial-mutation
+      - name: Keep serial evidence even on failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: testlab-serial-evidence
+          path: artifacts/ci-serial/
+          if-no-files-found: error
+          overwrite: true
+          retention-days: 14
+      - name: Keep controlled failure evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: testlab-serial-controlled-failure
+          path: artifacts/serial-mutation/
+          if-no-files-found: error
+          overwrite: true
+          retention-days: 14
+
+  linux-integration:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.TESTLAB_EXPECTED_COMMIT }}
+          persist-credentials: false
+      - name: Install CAN prerequisites
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y build-essential python3 python3-venv iproute2 kmod sudo git
+          python3 -m venv .venv-testlab
+          .venv-testlab/bin/python -m pip install --require-hashes -r tests/requirements.txt
+      - name: Validate the explicitly patched CAN copy as normal runner user
+        run: .venv-testlab/bin/python -m tests.testlab ci --profile can --source-profile proposed-fixes --output artifacts/ci-can
+      - name: Keep CAN and ownership evidence even on failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: testlab-can-evidence
+          path: artifacts/ci-can/
+          if-no-files-found: error
+          overwrite: true
+          retention-days: 14
+
+  aarch64-cross-build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.TESTLAB_EXPECTED_COMMIT }}
+          persist-credentials: false
+      - name: Install cross-build prerequisites
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y build-essential python3 ca-certificates git
+      - name: Install the hash-locked Gemstone SDK
+        run: python3 -m tests.testlab toolchain --output build/gemstone-sdk
+      - name: Compile AArch64 ELF without target execution
+        run: python3 -m tests.testlab ci --profile aarch64 --toolchain-root build/gemstone-sdk --output artifacts/ci-aarch64
+      - name: Keep cross-build evidence even on failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: testlab-aarch64-evidence
+          path: artifacts/ci-aarch64/
+          if-no-files-found: error
+          overwrite: true
+          retention-days: 14
+
+  acceptance:
+    needs: [host-checks, serial-integration, linux-integration, aarch64-cross-build]
+    if: always()
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.TESTLAB_EXPECTED_COMMIT }}
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: testlab-*-evidence
+          path: artifacts/ci-downloads
+      - name: Require four successful jobs and matching evidence
+        if: always()
+        env:
+          TESTLAB_JOB_RESULTS: >-
+            {"host":"${{ needs.host-checks.result }}","serial":"${{ needs.serial-integration.result }}","can":"${{ needs.linux-integration.result }}","aarch64":"${{ needs.aarch64-cross-build.result }}"}
+        run: |
+          python3 -m tests.testlab ci-verify --require-hosted \
+            --report artifacts/ci-downloads/testlab-host-evidence/ci.json \
+            --report artifacts/ci-downloads/testlab-serial-evidence/ci.json \
+            --report artifacts/ci-downloads/testlab-can-evidence/ci.json \
+            --report artifacts/ci-downloads/testlab-aarch64-evidence/ci.json \
+            --output artifacts/ci-acceptance/acceptance.json
+      - name: Keep final acceptance decision
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: testlab-ci-acceptance
+          path: artifacts/ci-acceptance/
+          if-no-files-found: error
+          overwrite: true
+          retention-days: 14

@@ -1,0 +1,68 @@
+--- a/serial/c/main.c
++++ b/serial/c/main.c
+@@ -18,6 +18,7 @@
+ #include <errno.h>
+ #include <fcntl.h>
+ #include <getopt.h>
++#include <limits.h>
+ #include <signal.h>
+ #include <stdio.h>
+ #include <stdlib.h>
+@@ -259,17 +260,22 @@
+             device = optarg;
+             break;
+         case 'b':
+-            baud_rate = atoi(optarg);
+-            if (baud_rate <= 0)
++        {
++            char* end = NULL;
++            errno = 0;
++            long parsed = strtol(optarg, &end, 10);
++            if (errno == ERANGE || end == optarg || *end != '\0' || parsed <= 0 || parsed > INT_MAX)
+             {
+                 printf("Invalid baud rate: %s\n", optarg);
+                 return EXIT_FAILURE;
+             }
+-            else if (get_baud_rate(baud_rate) == B0)
++            baud_rate = (int)parsed;
++            if (get_baud_rate(baud_rate) == B0)
+             {
+                 return EXIT_FAILURE;
+             }
+             break;
++        }
+         case 'h':
+             print_usage(argv[0]);
+             return EXIT_SUCCESS;
+--- a/serial/cpp/main.cpp
++++ b/serial/cpp/main.cpp
+@@ -17,6 +17,8 @@
+ 
+ #include "serial_terminal.h"
+ 
++#include <cerrno>
++#include <climits>
+ #include <cstdlib>
+ #include <getopt.h>
+ #include <iostream>
+@@ -69,13 +71,18 @@
+             device = optarg;
+             break;
+         case 'b':
+-            baud_rate = std::atoi(optarg);
+-            if (baud_rate <= 0)
++        {
++            char* end = nullptr;
++            errno = 0;
++            long parsed = std::strtol(optarg, &end, 10);
++            if (errno == ERANGE || end == optarg || *end != '\0' || parsed <= 0 || parsed > INT_MAX)
+             {
+                 std::cerr << "Invalid baud rate: " << optarg << std::endl;
+                 return EXIT_FAILURE;
+             }
++            baud_rate = static_cast<int>(parsed);
+             break;
++        }
+         case 'h':
+             print_usage(argv[0]);
+             return EXIT_SUCCESS;

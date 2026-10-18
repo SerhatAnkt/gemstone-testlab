@@ -1,0 +1,222 @@
+{
+  "snapshot": "https://snapshot.ubuntu.com/ubuntu/20260828T000000Z/",
+  "host_compatibility": "Ubuntu 24.04 amd64 with GCC/static libc development files; extracted packages use host glibc.",
+  "packages": [
+    {
+      "package": "acl",
+      "version": "2.3.2-1build1.1",
+      "architecture": "amd64",
+      "filename": "pool/main/a/acl/acl_2.3.2-1build1.1_amd64.deb",
+      "size_bytes": 39398,
+      "sha256": "0beec20d005bb4b3138ac9c99ab7c10a06acaf1ea1ad4e10ad760e56561edd58"
+    },
+    {
+      "package": "busybox-static",
+      "version": "1:1.36.1-6ubuntu3.1",
+      "architecture": "amd64",
+      "filename": "pool/main/b/busybox/busybox-static_1.36.1-6ubuntu3.1_amd64.deb",
+      "size_bytes": 1008874,
+      "sha256": "944b2728f53ceb3916cec2c962873c9951e612408099601751db2a0a5d81e0ed"
+    },
+    {
+      "package": "ipxe-qemu",
+      "version": "1.21.1+git-20220113.fbbdc3926-0ubuntu2",
+      "architecture": "all",
+      "filename": "pool/main/i/ipxe/ipxe-qemu_1.21.1+git-20220113.fbbdc3926-0ubuntu2_all.deb",
+      "size_bytes": 1564600,
+      "sha256": "1f1612934b6ddaf4dd633760dfe5ef2a79ea2507341fd5efe394ff589a044707"
+    },
+    {
+      "package": "kmod",
+      "version": "31+20240202-2ubuntu7.2",
+      "architecture": "amd64",
+      "filename": "pool/main/k/kmod/kmod_31+20240202-2ubuntu7.2_amd64.deb",
+      "size_bytes": 101742,
+      "sha256": "687693dfad23c96570d96a1c7cc1b8709d31a93f82ac765a11b2bd9130f1dfae"
+    },
+    {
+      "package": "libaio1t64",
+      "version": "0.3.113-6build1.1",
+      "architecture": "amd64",
+      "filename": "pool/main/liba/libaio/libaio1t64_0.3.113-6build1.1_amd64.deb",
+      "size_bytes": 7210,
+      "sha256": "433212b33e26d424605c01cec1de33b63f2cc12870987b4cb7b3625baba66a19"
+    },
+    {
+      "package": "libbrlapi0.8",
+      "version": "6.6-4ubuntu5",
+      "architecture": "amd64",
+      "filename": "pool/main/b/brltty/libbrlapi0.8_6.6-4ubuntu5_amd64.deb",
+      "size_bytes": 31388,
+      "sha256": "82272b3090c912e45d92ff7ed200de289c47e504513559377a6f6c5a372cbcf5"
+    },
+    {
+      "package": "libcacard0",
+      "version": "1:2.8.0-3build4",
+      "architecture": "amd64",
+      "filename": "pool/main/libc/libcacard/libcacard0_2.8.0-3build4_amd64.deb",
+      "size_bytes": 36546,
+      "sha256": "7a75de14b0fdff2828a3d218a49e7fe4da2df533185ba9ccbabd0647db05e33c"
+    },
+    {
+      "package": "libdaxctl1",
+      "version": "77-2ubuntu2",
+      "architecture": "amd64",
+      "filename": "pool/main/n/ndctl/libdaxctl1_77-2ubuntu2_amd64.deb",
+      "size_bytes": 21404,
+      "sha256": "c6629b49c79343fb11ae404aeaa3156f051168da6c6d3d9d8d516acd94705061"
+    },
+    {
+      "package": "libfdt1",
+      "version": "1.7.0-2build1",
+      "architecture": "amd64",
+      "filename": "pool/main/d/device-tree-compiler/libfdt1_1.7.0-2build1_amd64.deb",
+      "size_bytes": 20128,
+      "sha256": "274d20dfab9d6b216b5de85446a93f6ce5b2cd82c847b8dfdc508577f76eb96a"
+    },
+    {
+      "package": "libibverbs1",
+      "version": "50.0-2ubuntu0.2",
+      "architecture": "amd64",
+      "filename": "pool/main/r/rdma-core/libibverbs1_50.0-2ubuntu0.2_amd64.deb",
+      "size_bytes": 67960,
+      "sha256": "8489558105ee1d1c65ae6e0f1bac0e9b15f314a68f106ee9a63c89821242bd8e"
+    },
+    {
+      "package": "libndctl6",
+      "version": "77-2ubuntu2",
+      "architecture": "amd64",
+      "filename": "pool/main/n/ndctl/libndctl6_77-2ubuntu2_amd64.deb",
+      "size_bytes": 62750,
+      "sha256": "4eab53588a8fa9e3192635e118c2d91bc069cde46a4a3785c77a0bb1ae001d02"
+    },
+    {
+      "package": "libnl-route-3-200",
+      "version": "3.7.0-0.3build1.1",
+      "architecture": "amd64",
+      "filename": "pool/main/libn/libnl3/libnl-route-3-200_3.7.0-0.3build1.1_amd64.deb",
+      "size_bytes": 189094,
+      "sha256": "c9dbd29cb7fdcf1a0587726cbc5432a7d3e81242108dfcfa2dd6716c44c74d4d"
+    },
+    {
+      "package": "libpmem1",
+      "version": "1.13.1-1.1ubuntu2",
+      "architecture": "amd64",
+      "filename": "pool/main/p/pmdk/libpmem1_1.13.1-1.1ubuntu2_amd64.deb",
+      "size_bytes": 84760,
+      "sha256": "8f1be1cc834a98f0cf5c0950153f7f939a0c2c92095e98cd7bb40c752c545c1b"
+    },
+    {
+      "package": "librdmacm1t64",
+      "version": "50.0-2ubuntu0.2",
+      "architecture": "amd64",
+      "filename": "pool/main/r/rdma-core/librdmacm1t64_50.0-2ubuntu0.2_amd64.deb",
+      "size_bytes": 70698,
+      "sha256": "7b7cc2fa16564bf301751b43d05d16f0846288b080d9a25a92a691d0df33fc68"
+    },
+    {
+      "package": "libslirp0",
+      "version": "4.7.0-1ubuntu3.1",
+      "architecture": "amd64",
+      "filename": "pool/main/libs/libslirp/libslirp0_4.7.0-1ubuntu3.1_amd64.deb",
+      "size_bytes": 63830,
+      "sha256": "4efa2d1c509de4d10fe965e86a3d864bf542996caf476d9111fd882c73857164"
+    },
+    {
+      "package": "liburing2",
+      "version": "2.5-1build1",
+      "architecture": "amd64",
+      "filename": "pool/main/libu/liburing/liburing2_2.5-1build1_amd64.deb",
+      "size_bytes": 21092,
+      "sha256": "c2aef62accee92a06263c3ad4ef46132c13e409b54296c44792a20491830a7b0"
+    },
+    {
+      "package": "libusbredirparser1t64",
+      "version": "0.13.0-2.1build1",
+      "architecture": "amd64",
+      "filename": "pool/main/u/usbredir/libusbredirparser1t64_0.13.0-2.1build1_amd64.deb",
+      "size_bytes": 16508,
+      "sha256": "78be9176f05512bcac369fcada499686b1dd34320965d27e3405c7aacbc4e461"
+    },
+    {
+      "package": "linux-base",
+      "version": "4.5ubuntu9+24.04.2",
+      "architecture": "all",
+      "filename": "pool/main/l/linux-base/linux-base_4.5ubuntu9+24.04.2_all.deb",
+      "size_bytes": 19622,
+      "sha256": "b6ea776f8a0b0ce788d8920b3d6a7843ac731ec12d41e6718da9294fdacff633"
+    },
+    {
+      "package": "linux-image-6.8.0-138-generic",
+      "version": "6.8.0-138.138",
+      "architecture": "amd64",
+      "filename": "pool/main/l/linux-signed/linux-image-6.8.0-138-generic_6.8.0-138.138_amd64.deb",
+      "size_bytes": 14815182,
+      "sha256": "7093879c9dad61fb24bb5a0247d8dd1ea444c4854492a9b3669175624cd04bda"
+    },
+    {
+      "package": "linux-image-virtual",
+      "version": "6.8.0-138.138",
+      "architecture": "amd64",
+      "filename": "pool/main/l/linux-meta/linux-image-virtual_6.8.0-138.138_amd64.deb",
+      "size_bytes": 11428,
+      "sha256": "b1dd1062579b49b2014d35a3369ca23756f68a14db1355e280476c6c5786930e"
+    },
+    {
+      "package": "linux-libc-dev",
+      "version": "6.8.0-138.138",
+      "architecture": "amd64",
+      "filename": "pool/main/l/linux/linux-libc-dev_6.8.0-138.138_amd64.deb",
+      "size_bytes": 1522718,
+      "sha256": "f4186f788e64662d7b10a489b45d7bc953a3b382748ef14f84b2159cd659ff3b"
+    },
+    {
+      "package": "linux-modules-6.8.0-138-generic",
+      "version": "6.8.0-138.138",
+      "architecture": "amd64",
+      "filename": "pool/main/l/linux/linux-modules-6.8.0-138-generic_6.8.0-138.138_amd64.deb",
+      "size_bytes": 39127232,
+      "sha256": "2b6108dba87947e4cb7d79759fd85dfe39d431466d745d1b6ec75b4bdabe866d"
+    },
+    {
+      "package": "qemu-system-common",
+      "version": "1:8.2.2+ds-0ubuntu1.18",
+      "architecture": "amd64",
+      "filename": "pool/main/q/qemu/qemu-system-common_8.2.2+ds-0ubuntu1.18_amd64.deb",
+      "size_bytes": 1255316,
+      "sha256": "0a0b744f31e87d72dd0465436b8dfbb1ef9f574ecd0d5a2e9dd8c5cb7d0fef1f"
+    },
+    {
+      "package": "qemu-system-data",
+      "version": "1:8.2.2+ds-0ubuntu1.18",
+      "architecture": "all",
+      "filename": "pool/main/q/qemu/qemu-system-data_8.2.2+ds-0ubuntu1.18_all.deb",
+      "size_bytes": 1796342,
+      "sha256": "a14b88d864859bd61c8a3274971da4ecb7da6cec15be6c265d0d411f783d5f2e"
+    },
+    {
+      "package": "qemu-system-x86",
+      "version": "1:8.2.2+ds-0ubuntu1.18",
+      "architecture": "amd64",
+      "filename": "pool/main/q/qemu/qemu-system-x86_8.2.2+ds-0ubuntu1.18_amd64.deb",
+      "size_bytes": 11222476,
+      "sha256": "14602e262627adac030329d2cecfee5f6c0938b34566ff2ea2d4c9a9eb02430d"
+    },
+    {
+      "package": "seabios",
+      "version": "1.16.3-2",
+      "architecture": "all",
+      "filename": "pool/main/s/seabios/seabios_1.16.3-2_all.deb",
+      "size_bytes": 174648,
+      "sha256": "cac4e59a66c834d19cae751c22ab3a0391c22f78010fd11aa2e3fe630e6bc0e0"
+    },
+    {
+      "package": "linux-modules-extra-6.8.0-138-generic",
+      "version": "6.8.0-138.138",
+      "architecture": "amd64",
+      "filename": "pool/main/l/linux/linux-modules-extra-6.8.0-138-generic_6.8.0-138.138_amd64.deb",
+      "size_bytes": 113367232,
+      "sha256": "9de8984f70363af5b919402ae0b2121b1b9b54a74bc5c1495db2869d36e79f38"
+    }
+  ]
+}
