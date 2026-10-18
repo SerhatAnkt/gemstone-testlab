@@ -1,10 +1,10 @@
-# Gerçek GitHub CI kayıtları
+# GitHub Actions records
 
-| Koşu | Sonuç | Açıklama |
+| Run | Result | Notes |
 | --- | --- | --- |
-| [#1](https://github.com/SerhatAnkt/gemstone-testlab/actions/runs/39155256787) | Başarısız | CAN modülü yok; gizli host kanıtı upload sırasında eksik. [Kayıt](39155256787.json) |
-| [#2](https://github.com/SerhatAnkt/gemstone-testlab/actions/runs/39155570890) | Beş iş başarılı | 66 host, 45 seri, 36 vcan; altı AArch64 derleme; artifact'ler ayrıca yerelde doğrulandı. [Kayıt](39155570890.json) |
+| [#1](https://github.com/SerhatAnkt/gemstone-testlab/actions/runs/39155256787) | Failed | Missing vcan module and a hidden file in the uploaded reports. [JSON record](39155256787.json) |
+| [#2](https://github.com/SerhatAnkt/gemstone-testlab/actions/runs/39155570890) | All five jobs passed | 66 host, 45 serial, and 36 CAN tests; six ARM64 builds. Downloaded reports were also checked locally. [JSON record](39155570890.json) |
+| [#3](https://github.com/SerhatAnkt/gemstone-testlab/actions/runs/39155974896) | All five jobs passed | A second passing run after the result notes were added. |
 
-Kayıtlar gerçek commit, job ve artifact kimlikleriyle sonuçların kapsamını
-gösterir. Küçük özetler Git'te korunur; ham artifact'lerin saklama süresi
-workflow'da 14 gündür. O1 kartı veya ARM64 hedefte çalıştırma kanıtı değildir.
+The JSON records save commit, job, and report IDs. Raw reports on GitHub are
+kept for 14 days. These runs do not include tests on an O1 board.

@@ -1,15 +1,12 @@
-## Problem and behavior
+## What changed?
 
-Describe the concrete trigger, previous behavior, and resulting behavior.
-Name the source revision and whether this uses working-tree or proposed-fixes.
+Explain the problem and how this change fixes it.
 
-## Validation
+## How did you test it?
 
-Include the exact commands, actual exit codes, and accessible JSON/JUnit/log
-evidence. State whether this is host/PTY/vcan execution or AArch64 build-only.
-If a required prerequisite was unavailable, record that result explicitly.
+Add the commands, source commit, and test results. Link the relevant reports.
+Say if you used `working-tree` or `proposed-fixes` and which test groups ran.
 
-## Scope
+## Anything left to check?
 
-List affected examples/contracts, cleanup implications, and any remaining
-acceptance item. Physical O1 validation requires separate real board evidence.
+Mention missing tools, cleanup problems, or tests that still need a board.

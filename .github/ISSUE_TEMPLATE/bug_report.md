@@ -1,23 +1,27 @@
 ---
-name: Reproducible test or example failure
-about: Report a concrete failure with source, command, and evidence
+name: Bug report
+about: Tell me what failed and how to try it again
 title: ''
 labels: ''
 assignees: ''
 ---
 
-### Trigger and expected behavior
+## What happened?
 
-### Source and environment
+What did you expect? What happened instead?
 
-Commit/dirty state, Linux/kernel, Python, source profile, and relevant SDK version.
+## How can I try it?
 
-### Reproduction
+Add the exact command, its exit code, and the source commit.
+Say if you used `working-tree` or `proposed-fixes`.
 
-Exact command and real exit code. Attach failure.json, JSON/JUnit, and relevant
-stdout/stderr; remove unrelated private paths before sharing publicly.
+## Your setup
 
-### Execution scope
+Linux and kernel version, Python version, and SDK version if used.
+Was this a host, PTY, vcan, ARM64 build, or real board test?
 
-Host/PTY/vcan, AArch64 build-only, or physical board. State unavailable
-prerequisites and whether any process/interface remained after cleanup.
+## Logs
+
+Add the relevant logs, `failure.json`, or test report.
+Did any process or network interface stay open after the test?
+Remove private information before posting.

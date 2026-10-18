@@ -1,25 +1,25 @@
-# Upstream katkı paketleri
+# Proposed fixes
 
-Referans: `t3gemstone/examples@2619a7584d39203a057abc08ab7c6698dc476868`.
-**Durum: taslak; issue/PR gönderilmedi.** Her yama özgün sürüme bağımsız
-uygulanır. Sayılar yalnız aşağıdaki odaklı regresyon seçimidir; tam matrisin
-yerine geçmez. Toplam 12 kusurlu vaka, beş ayrı düzeltmeyle değerlendirilir.
+These five fixes are for Gemstone examples at commit
+`2619a7584d39203a057abc08ab7c6698dc476868`.
+They have not been sent upstream. Each patch works on its own.
 
-| Giriş | Sorun | Yama | Odaklı vaka | PR açıklaması |
-| --- | --- | --- | --- | --- |
-| 01 | C CAN göndericisi başarısız indeks sorgusunu kullanıyor | `0001` | 1 | [01-can-interface.md](01-can-interface.md) |
-| 02 | C/C++ seri RX, CR baytını LF'ye çeviriyor | `0002` | 4 | [02-serial-raw-input.md](02-serial-raw-input.md) |
-| 03 | C/C++ `9600oops` baud değerini kabul ediyor | `0003` | 2 | [03-serial-baud.md](03-serial-baud.md) |
-| 04 | Python toplu konsol girdisi tamponda kalıyor | `0004` | 3 | [04-python-stdin.md](04-python-stdin.md) |
-| 05 | Python `--help` başarısız çıkış veriyor | `0005` | 2 | [05-python-help.md](05-python-help.md) |
+| Fix | Problem | Selected tests | Draft description |
+| --- | --- | --- | --- |
+| 01 | C CAN sender does not check a failed interface lookup | 1 | [CAN interface](01-can-interface.md) |
+| 02 | C/C++ serial programs change CR bytes to LF | 4 | [Raw serial input](02-serial-raw-input.md) |
+| 03 | C/C++ serial programs accept `9600oops` as a baud value | 2 | [Baud input](03-serial-baud.md) |
+| 04 | Python serial input can stay in a buffer | 3 | [Python input](04-python-stdin.md) |
+| 05 | Python `--help` returns a failure code | 2 | [Help exit code](05-python-help.md) |
 
-Tam yama adları, değişmesi gereken dosyalar ve kesin pytest node'ları
-[series.json](series.json) içindedir. `tools/check_contributions.py`, her giriş
-için önce özgün sürümde gerçek call başarısızlığını, sonra yalnız o yamanın
-kopyasında başarıyı ister. Tüm yamalar birlikte ayrıca tam CAN/seri CI
-profillerinde sınanır. Komutlar ve gönderme adımları:
-[CONTRIBUTING.md](../CONTRIBUTING.md).
+The patch files are in [patches/](../patches). Exact file names and test cases
+are listed in [series.json](series.json).
 
-PR dosyalarının İngilizce başlığı ve açıklaması gönderime uyarlanabilir.
-Yerel kanıt adresleri uzak ek değildir; gönderimden önce gerçek kanıt eklenmeli
-ve güncel upstream sürümünde yeniden doğrulanmalıdır.
+The before/after check runs each patch separately: first on the original code,
+then on a copy with that one fix. The selected tests must fail before the fix
+and pass after it. Setup or cleanup errors do not count as proof of a bug.
+The full CAN and serial suites also run with all the relevant fixes together.
+
+See [CONTRIBUTING.md](../CONTRIBUTING.md) for commands. Before opening a pull
+request, check the latest Gemstone code and add the real test reports to the
+draft description.
